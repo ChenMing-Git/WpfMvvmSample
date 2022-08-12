@@ -7,17 +7,8 @@ using WpfMvvmSample.UI.View;
 
 namespace WpfMvvmSample.UI.ViewModel
 {
-    internal class MenuItemViewModel : INotifyPropertyChanged
+    internal class MenuItemViewModel : ViewModelBase
     {
-        #region INotifyPropertyChanged
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void RaisePropertyChanged([CallerMemberName] string propertyName = null)
-          => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
-        #endregion INotifyPropertyChanged
-
 
         public MenuItemViewModel() { }
 

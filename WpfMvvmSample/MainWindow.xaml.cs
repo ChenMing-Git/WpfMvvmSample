@@ -12,8 +12,11 @@ namespace WpfMvvmSample
         {
             InitializeComponent();
 
-            var menuViewModel = new MenuViewModel();
-            this.DataContext = menuViewModel;
+            //var menuViewModel = new MenuViewModel();
+            //this.DataContext = menuViewModel;
+
+            var classRoomsViewModel = new ClassRoomsViewModel();
+            this.DataContext = classRoomsViewModel;
         }
     }
 }

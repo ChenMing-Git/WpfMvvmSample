@@ -10,17 +10,8 @@ using WpfMvvmSample.UI.View;
 
 namespace WpfMvvmSample.UI.ViewModel
 {
-    internal class MenuViewModel : INotifyPropertyChanged
+    internal class MenuViewModel : ViewModelBase
     {
-        #region INotifyPropertyChanged
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void RaisePropertyChanged([CallerMemberName] string propertyName = null)
-          => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
-        #endregion INotifyPropertyChanged
-
 
         public ObservableCollection<MenuItemViewModel> menuItemViewModel { get; set; }
 
