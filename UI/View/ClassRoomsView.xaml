@@ -11,31 +11,38 @@
         <viewModel:ClassRoomsViewModel />
     </UserControl.DataContext>
     <Grid>
-        <ItemsControl Name="ClassRoomsControl" ItemsSource="{Binding ClassRooms}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Vertical">
-                        <Expander Margin="30 15 15 0" IsExpanded="True" Header="{Binding Path=RoomName}">
-                            <Expander.Content>
-                                <StackPanel Orientation="Vertical">
-                                    <Button Content="新增" Margin="25 5 0 0" Command="{Binding AddCommand}" CommandParameter="{Binding Path=Id}" />
-                                    <ListBox ItemsSource="{Binding Path=Students}" Margin="25 5 0 0">
-                                        <ListBox.ItemTemplate>
-                                            <DataTemplate>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <TextBox Text="{Binding Path=Name,Mode=TwoWay}" Width="100" />
-                                                    <TextBlock Text="{Binding Path=Name}" Width="100" />
-                                                    <Button Content="删除" Width="50" Command="{Binding DeleteCommand}" CommandParameter="{Binding Path=Id}" />
-                                                </StackPanel>
-                                            </DataTemplate>
-                                        </ListBox.ItemTemplate>
-                                    </ListBox>
-                                </StackPanel>
-                            </Expander.Content>
-                        </Expander>
-                    </StackPanel>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button Margin="5" Content="新增班级" Command="{Binding AddClassRoomCommand}" Grid.Row="0" />
+        <ScrollViewer Grid.Row="1">
+            <ItemsControl Name="ClassRoomsControl" ItemsSource="{Binding ClassRooms}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <Expander Margin="15 0 15 15" IsExpanded="True" Header="{Binding Path=RoomName}">
+                                <Expander.Content>
+                                    <StackPanel Orientation="Vertical">
+                                        <Button Content="新增" Margin="25 5 0 0" Command="{Binding AddStudentCommand}" CommandParameter="{Binding Path=Id}" />
+                                        <ListBox ItemsSource="{Binding Path=Students}" Margin="25 5 0 0">
+                                            <ListBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBox Text="{Binding Path=Name,Mode=TwoWay}" Width="100" />
+                                                        <TextBlock Text="{Binding Path=Name}" Width="100" />
+                                                        <Button Content="删除" Width="50" Command="{Binding DeleteStudentCommand}" CommandParameter="{Binding Path=Id}" />
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ListBox.ItemTemplate>
+                                        </ListBox>
+                                    </StackPanel>
+                                </Expander.Content>
+                            </Expander>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
     </Grid>
 </UserControl>

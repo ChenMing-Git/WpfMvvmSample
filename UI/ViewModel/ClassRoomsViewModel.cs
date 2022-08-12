@@ -12,6 +12,8 @@ namespace WpfMvvmSample.UI.ViewModel
 {
     internal class ClassRoomsViewModel : ViewModelBase
     {
+        private int MaxClassRoomId = 2;
+        private int MaxStudentId = 200;
 
         private List<ClassRoomViewModel> _classRooms = new List<ClassRoomViewModel>();
         public List<ClassRoomViewModel> ClassRooms
@@ -47,54 +49,69 @@ namespace WpfMvvmSample.UI.ViewModel
         }
 
         private DelegateCommand _Command;
-
-        public ICommand AddCommand
+        
+        public ICommand AddClassRoomCommand
         {
             get
             {
-                _Command = new DelegateCommand(param => this.Add(param), null);
+                _Command = new DelegateCommand(param => this.AddClassRoom(), null);
                 return _Command;
             }
         }
 
-        public void Add(object param)
+        public void AddClassRoom()
         {
-            MessageBox.Show(param.ToString());
-            var temp = ClassRooms;
-            var f = temp.Find(x => x.Id == int.Parse(param.ToString()));
+            MaxClassRoomId++;
+            var tempClassRooms = ClassRooms;
+            tempClassRooms.Add(new ClassRoomViewModel(this, MaxClassRoomId, $"一年级（ {MaxClassRoomId} ）班", "一年级", new List<StudentViewModel>()));
+            ClassRooms = new List<ClassRoomViewModel>();
+            ClassRooms = tempClassRooms;
+        }
+
+        public ICommand AddStudentCommand
+        {
+            get
+            {
+                _Command = new DelegateCommand(param => this.AddStudent(param), null);
+                return _Command;
+            }
+        }
+
+        public void AddStudent(object param)
+        {
+            var tempClassRooms = ClassRooms;
+            var f = tempClassRooms.Find(x => x.Id == int.Parse(param.ToString()));
             if (f != null)
             {
-                f.Students.Add(new StudentViewModel(this, 101, "新"));
-                MessageBox.Show(f.Students.Count.ToString());
+                f.Students.Add(new StudentViewModel(this, MaxStudentId, $"新增_{MaxStudentId}"));
+                MaxStudentId++;
             }
             ClassRooms = new List<ClassRoomViewModel>();
-            ClassRooms = temp;
+            ClassRooms = tempClassRooms;
         }
 
-        public ICommand DeleteCommand
+        public ICommand DeleteStudentCommand
         {
             get
             {
-                _Command = new DelegateCommand(param => this.Delete(param), null);
+                _Command = new DelegateCommand(param => this.DeleteStudent(param), null);
                 return _Command;
             }
         }
 
-        public void Delete(object param)
+        public void DeleteStudent(object param)
         {
-            MessageBox.Show(param.ToString());
-            var temp = ClassRooms;
-            foreach (var ClassRoom in temp)
+            var tempClassRooms = ClassRooms;
+            foreach (var ClassRoom in tempClassRooms)
             {
                 var f = ClassRoom.Students.Find(x => x.Id == int.Parse(param.ToString()));
                 if (f != null)
                 {
                     ClassRoom.Students.Remove(f);
-                    MessageBox.Show(ClassRoom.Students.Count.ToString());
                 }
             }
             ClassRooms = new List<ClassRoomViewModel>();
-            ClassRooms = temp;
+            ClassRooms = tempClassRooms;
         }
     }
 
@@ -157,13 +174,13 @@ namespace WpfMvvmSample.UI.ViewModel
                 RaisePropertyChanged("Students");
             }
         }
-        public ICommand AddCommand
+        public ICommand AddStudentCommand
         {
             get
             {
                 try
                 {
-                    return this.classRoomsViewModel.AddCommand;
+                    return this.classRoomsViewModel.AddStudentCommand;
                 }
                 catch (Exception ex)
                 {
@@ -210,13 +227,13 @@ namespace WpfMvvmSample.UI.ViewModel
             }
         }
 
-        public ICommand DeleteCommand
+        public ICommand DeleteStudentCommand
         {
             get
             {
                 try
                 {
-                    return this.classRoomsViewModel.DeleteCommand;
+                    return this.classRoomsViewModel.DeleteStudentCommand;
                 }
                 catch (Exception ex)
                 {
