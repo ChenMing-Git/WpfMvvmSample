@@ -1,18 +1,12 @@
 ﻿using MvvmSample;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
-using WpfMvvmSample.UI.View;
 
 namespace WpfMvvmSample.UI.ViewModel
 {
     internal class MenuViewModel : ViewModelBase
     {
-
         public ObservableCollection<MenuItemViewModel> menuItemViewModel { get; set; }
 
         public MenuViewModel()

@@ -59,6 +59,7 @@
     <Compile Include="Model\ClassRoom.cs" />
     <Compile Include="Model\Student.cs" />
     <Compile Include="UI\ViewModel\ClassRoomsViewModel.cs" />
+    <Compile Include="UI\ViewModel\MainWindowViewModel.cs" />
     <Compile Include="UI\ViewModel\MenuItemViewModel.cs" />
     <Compile Include="UI\ViewModel\MenuViewModel.cs" />
     <Compile Include="UI\ViewModel\ViewModelBase.cs" />

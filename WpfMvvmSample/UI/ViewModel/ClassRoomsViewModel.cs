@@ -1,20 +1,17 @@
 ﻿using MvvmSample;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Windows;
 using System.Windows.Input;
 
 namespace WpfMvvmSample.UI.ViewModel
 {
     internal class ClassRoomsViewModel : ViewModelBase
     {
+        private int MaxClassRoomId = 2;
         private int MaxStudentId = 200;
 
         private List<ClassRoomViewModel> _classRooms = new List<ClassRoomViewModel>();
+
         public List<ClassRoomViewModel> ClassRooms
         {
             get { return _classRooms; }
@@ -49,16 +46,34 @@ namespace WpfMvvmSample.UI.ViewModel
 
         private DelegateCommand _Command;
 
-        public ICommand AddCommand
+        public ICommand AddClassRoomCommand
         {
             get
             {
-                _Command = new DelegateCommand(param => this.Add(param), null);
+                _Command = new DelegateCommand(param => this.AddClassRoom(), null);
                 return _Command;
             }
         }
 
-        public void Add(object param)
+        public void AddClassRoom()
+        {
+            var tempClassRooms = ClassRooms;
+            MaxClassRoomId++;
+            tempClassRooms.Add(new ClassRoomViewModel(this, MaxClassRoomId, $"一年级（ {MaxClassRoomId} ）班", "一年级", new List<StudentViewModel>()));
+            ClassRooms = new List<ClassRoomViewModel>();
+            ClassRooms = tempClassRooms;
+        }
+
+        public ICommand AddStudentCommand
+        {
+            get
+            {
+                _Command = new DelegateCommand(param => this.AddStudent(param), null);
+                return _Command;
+            }
+        }
+
+        public void AddStudent(object param)
         {
             var tempClassRooms = ClassRooms;
             var f = tempClassRooms.Find(x => x.Id == int.Parse(param.ToString()));
@@ -71,16 +86,16 @@ namespace WpfMvvmSample.UI.ViewModel
             ClassRooms = tempClassRooms;
         }
 
-        public ICommand DeleteCommand
+        public ICommand DeleteStudentCommand
         {
             get
             {
-                _Command = new DelegateCommand(param => this.Delete(param), null);
+                _Command = new DelegateCommand(param => this.DeleteStudent(param), null);
                 return _Command;
             }
         }
 
-        public void Delete(object param)
+        public void DeleteStudent(object param)
         {
             var tempClassRooms = ClassRooms;
             foreach (var ClassRoom in tempClassRooms)
@@ -98,7 +113,6 @@ namespace WpfMvvmSample.UI.ViewModel
 
     internal class ClassRoomViewModel : ViewModelBase
     {
-
         public ClassRoomsViewModel classRoomsViewModel { get; set; }
 
         public ClassRoomViewModel()
@@ -116,6 +130,7 @@ namespace WpfMvvmSample.UI.ViewModel
         }
 
         private int _id = 0;
+
         public int Id
         {
             get { return _id; }
@@ -125,7 +140,9 @@ namespace WpfMvvmSample.UI.ViewModel
                 RaisePropertyChanged("Id");
             }
         }
+
         private string _roomName = string.Empty;
+
         public string RoomName
         {
             get { return _roomName; }
@@ -135,7 +152,9 @@ namespace WpfMvvmSample.UI.ViewModel
                 RaisePropertyChanged("RoomName");
             }
         }
+
         private string _grade = string.Empty;
+
         public string Grade
         {
             get { return _grade; }
@@ -145,7 +164,9 @@ namespace WpfMvvmSample.UI.ViewModel
                 RaisePropertyChanged("Grade");
             }
         }
-        private List<StudentViewModel> _students =  new List<StudentViewModel> ();
+
+        private List<StudentViewModel> _students = new List<StudentViewModel>();
+
         public List<StudentViewModel> Students
         {
             get { return _students; }
@@ -155,13 +176,14 @@ namespace WpfMvvmSample.UI.ViewModel
                 RaisePropertyChanged("Students");
             }
         }
-        public ICommand AddCommand
+
+        public ICommand AddStudentCommand
         {
             get
             {
                 try
                 {
-                    return this.classRoomsViewModel.AddCommand;
+                    return this.classRoomsViewModel.AddStudentCommand;
                 }
                 catch (Exception ex)
                 {
@@ -173,7 +195,6 @@ namespace WpfMvvmSample.UI.ViewModel
 
     internal class StudentViewModel : ViewModelBase
     {
-
         public StudentViewModel()
         {
         }
@@ -188,6 +209,7 @@ namespace WpfMvvmSample.UI.ViewModel
         }
 
         private int _id = 0;
+
         public int Id
         {
             get { return _id; }
@@ -197,7 +219,9 @@ namespace WpfMvvmSample.UI.ViewModel
                 RaisePropertyChanged("Id");
             }
         }
+
         private string _name = string.Empty;
+
         public string Name
         {
             get { return _name; }
@@ -208,13 +232,13 @@ namespace WpfMvvmSample.UI.ViewModel
             }
         }
 
-        public ICommand DeleteCommand
+        public ICommand DeleteStudentCommand
         {
             get
             {
                 try
                 {
-                    return this.classRoomsViewModel.DeleteCommand;
+                    return this.classRoomsViewModel.DeleteStudentCommand;
                 }
                 catch (Exception ex)
                 {

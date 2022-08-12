@@ -1,6 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using WpfMvvmSample.Model;
 using WpfMvvmSample.UI.View;
@@ -9,14 +7,14 @@ namespace WpfMvvmSample.UI.ViewModel
 {
     internal class MenuItemViewModel : ViewModelBase
     {
-
-        public MenuItemViewModel() { }
+        public MenuItemViewModel()
+        { }
 
         public MenuViewModel menuViewModel { get; set; }
         public MenuItem menuItem { get; set; }
 
-
         private WeakReference _viewHolder = null;
+
         public MenuItemView view
         {
             get
@@ -55,7 +53,6 @@ namespace WpfMvvmSample.UI.ViewModel
         //        _menuViewHolder = new WeakReference(value);
         //    }
         //}
-
 
         public ICommand DeleteCommand
         {

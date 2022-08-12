@@ -1,17 +1,21 @@
 ﻿<UserControl x:Class="WpfMvvmSample.UI.View.ClassRoomsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:WpfMvvmSample.UI.View"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModel="clr-namespace:WpfMvvmSample.UI.ViewModel"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.DataContext>
         <viewModel:ClassRoomsViewModel />
     </UserControl.DataContext>
     <Grid>
-        <ScrollViewer>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" Content="新增教室" Margin="16 5 16 5" Command="{Binding AddClassRoomCommand}" />
+        <ScrollViewer Grid.Row="1">
             <ItemsControl Name="ClassRoomsControl" ItemsSource="{Binding ClassRooms}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
@@ -19,14 +23,14 @@
                             <Expander Margin="15 0 15 15" IsExpanded="True" Header="{Binding Path=RoomName}">
                                 <Expander.Content>
                                     <StackPanel Orientation="Vertical">
-                                        <Button Content="新增" Margin="25 5 0 0" Command="{Binding AddCommand}" CommandParameter="{Binding Path=Id}" />
+                                        <Button Content="新增学生" Margin="25 5 0 0" Command="{Binding AddStudentCommand}" CommandParameter="{Binding Path=Id}" />
                                         <ListBox ItemsSource="{Binding Path=Students}" Margin="25 5 0 0">
                                             <ListBox.ItemTemplate>
                                                 <DataTemplate>
                                                     <StackPanel Orientation="Horizontal">
                                                         <TextBox Text="{Binding Path=Name,Mode=TwoWay}" Width="100" />
                                                         <TextBlock Text="{Binding Path=Name}" Width="100" />
-                                                        <Button Content="删除" Width="50" Command="{Binding DeleteCommand}" CommandParameter="{Binding Path=Id}" />
+                                                        <Button Content="删除" Width="50" Command="{Binding DeleteStudentCommand}" CommandParameter="{Binding Path=Id}" />
                                                     </StackPanel>
                                                 </DataTemplate>
                                             </ListBox.ItemTemplate>
