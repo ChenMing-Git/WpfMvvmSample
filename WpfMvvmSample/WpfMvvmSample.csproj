@@ -66,6 +66,9 @@
     <Compile Include="UI\View\ClassRoomsView.xaml.cs">
       <DependentUpon>ClassRoomsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\View\FunctionsView.xaml.cs">
+      <DependentUpon>FunctionsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\View\MenuItemView.xaml.cs">
       <DependentUpon>MenuItemView.xaml</DependentUpon>
     </Compile>
@@ -85,6 +88,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="UI\View\ClassRoomsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\View\FunctionsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

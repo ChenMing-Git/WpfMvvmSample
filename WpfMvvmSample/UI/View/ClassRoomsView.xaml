@@ -14,7 +14,7 @@
             <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" Content="新增教室" Margin="16 5 16 5" Command="{Binding AddClassRoomCommand}" />
+        <Button Grid.Row="0" Content="新增教室" Margin="17 5 17 5" Command="{Binding AddClassRoomCommand}" />
         <ScrollViewer Grid.Row="1">
             <ItemsControl Name="ClassRoomsControl" ItemsSource="{Binding ClassRooms}">
                 <ItemsControl.ItemTemplate>
@@ -28,8 +28,8 @@
                                             <ListBox.ItemTemplate>
                                                 <DataTemplate>
                                                     <StackPanel Orientation="Horizontal">
-                                                        <TextBox Text="{Binding Path=Name,Mode=TwoWay}" Width="100" />
-                                                        <TextBlock Text="{Binding Path=Name}" Width="100" />
+                                                        <TextBox Text="{Binding Path=Name,Mode=TwoWay}" Width="150" />
+                                                        <TextBlock Text="{Binding Path=Name}" Width="150" />
                                                         <Button Content="删除" Width="50" Command="{Binding DeleteStudentCommand}" CommandParameter="{Binding Path=Id}" />
                                                     </StackPanel>
                                                 </DataTemplate>
