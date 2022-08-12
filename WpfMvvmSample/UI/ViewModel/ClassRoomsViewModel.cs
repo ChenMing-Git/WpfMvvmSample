@@ -12,6 +12,7 @@ namespace WpfMvvmSample.UI.ViewModel
 {
     internal class ClassRoomsViewModel : ViewModelBase
     {
+        private int MaxStudentId = 200;
 
         private List<ClassRoomViewModel> _classRooms = new List<ClassRoomViewModel>();
         public List<ClassRoomViewModel> ClassRooms
@@ -59,16 +60,15 @@ namespace WpfMvvmSample.UI.ViewModel
 
         public void Add(object param)
         {
-            MessageBox.Show(param.ToString());
-            var temp = ClassRooms;
-            var f = temp.Find(x => x.Id == int.Parse(param.ToString()));
+            var tempClassRooms = ClassRooms;
+            var f = tempClassRooms.Find(x => x.Id == int.Parse(param.ToString()));
             if (f != null)
             {
-                f.Students.Add(new StudentViewModel(this, 101, "新"));
-                MessageBox.Show(f.Students.Count.ToString());
+                f.Students.Add(new StudentViewModel(this, MaxStudentId, $"新增_{MaxStudentId}"));
+                MaxStudentId++;
             }
             ClassRooms = new List<ClassRoomViewModel>();
-            ClassRooms = temp;
+            ClassRooms = tempClassRooms;
         }
 
         public ICommand DeleteCommand
@@ -82,19 +82,17 @@ namespace WpfMvvmSample.UI.ViewModel
 
         public void Delete(object param)
         {
-            MessageBox.Show(param.ToString());
-            var temp = ClassRooms;
-            foreach (var ClassRoom in temp)
+            var tempClassRooms = ClassRooms;
+            foreach (var ClassRoom in tempClassRooms)
             {
                 var f = ClassRoom.Students.Find(x => x.Id == int.Parse(param.ToString()));
                 if (f != null)
                 {
                     ClassRoom.Students.Remove(f);
-                    MessageBox.Show(ClassRoom.Students.Count.ToString());
                 }
             }
             ClassRooms = new List<ClassRoomViewModel>();
-            ClassRooms = temp;
+            ClassRooms = tempClassRooms;
         }
     }
 
