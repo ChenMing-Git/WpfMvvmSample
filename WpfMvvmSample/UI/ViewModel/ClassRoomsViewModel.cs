@@ -1,5 +1,4 @@
-﻿using MvvmSample;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Windows.Input;
 
@@ -7,8 +6,8 @@ namespace WpfMvvmSample.UI.ViewModel
 {
     internal class ClassRoomsViewModel : ViewModelBase
     {
-        private int MaxClassRoomId = 2;
-        private int MaxStudentId = 200;
+        private int MaxClassRoomId = 0;
+        private int MaxStudentId = 100;
 
         private List<ClassRoomViewModel> _classRooms = new List<ClassRoomViewModel>();
 
@@ -29,19 +28,19 @@ namespace WpfMvvmSample.UI.ViewModel
 
         private void LoadData()
         {
-            ClassRooms = new List<ClassRoomViewModel>();
+            //ClassRooms = new List<ClassRoomViewModel>();
 
-            var Students1 = new List<StudentViewModel>();
-            Students1.Add(new StudentViewModel(this, 111, "赵"));
-            Students1.Add(new StudentViewModel(this, 112, "钱"));
-            Students1.Add(new StudentViewModel(this, 113, "孙"));
-            ClassRooms.Add(new ClassRoomViewModel(this, 1, "一年级（ 1 ）班", "一年级", Students1));
+            //var Students1 = new List<StudentViewModel>();
+            //Students1.Add(new StudentViewModel(this, 111, "赵"));
+            //Students1.Add(new StudentViewModel(this, 112, "钱"));
+            //Students1.Add(new StudentViewModel(this, 113, "孙"));
+            //ClassRooms.Add(new ClassRoomViewModel(this, 1, "一年级（ 1 ）班", "一年级", Students1));
 
-            var Students2 = new List<StudentViewModel>();
-            Students2.Add(new StudentViewModel(this, 121, "李"));
-            Students2.Add(new StudentViewModel(this, 122, "周"));
-            Students2.Add(new StudentViewModel(this, 123, "吴"));
-            ClassRooms.Add(new ClassRoomViewModel(this, 2, "一年级（ 2 ）班", "一年级", Students2));
+            //var Students2 = new List<StudentViewModel>();
+            //Students2.Add(new StudentViewModel(this, 121, "李"));
+            //Students2.Add(new StudentViewModel(this, 122, "周"));
+            //Students2.Add(new StudentViewModel(this, 123, "吴"));
+            //ClassRooms.Add(new ClassRoomViewModel(this, 2, "一年级（ 2 ）班", "一年级", Students2));
         }
 
         private DelegateCommand _Command;

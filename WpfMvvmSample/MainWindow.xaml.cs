@@ -15,8 +15,8 @@ namespace WpfMvvmSample
             //var menuViewModel = new MenuViewModel();
             //this.DataContext = menuViewModel;
 
-            var classRoomsViewModel = new ClassRoomsViewModel();
-            this.DataContext = classRoomsViewModel;
+            //var classRoomsViewModel = new ClassRoomsViewModel();
+            //this.DataContext = classRoomsViewModel;
         }
     }
 }

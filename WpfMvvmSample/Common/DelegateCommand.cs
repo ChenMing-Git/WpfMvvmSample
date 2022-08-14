@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace MvvmSample
+namespace WpfMvvmSample
 {
     internal class DelegateCommand : ICommand
     {

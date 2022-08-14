@@ -7,11 +7,52 @@
         xmlns:viewModel="clr-namespace:WpfMvvmSample.UI.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Window.DataContext>
-        <viewModel:ClassRoomsViewModel />
-    </Window.DataContext>
-    <Grid>
+    <Window.Resources>
+        <viewModel:MainWindowViewModel x:Key="MainWindowViewModel" />
+    </Window.Resources>
+    <Grid DataContext="{StaticResource MainWindowViewModel}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <!--<TreeView BorderThickness="0">
+            <TreeViewItem Header="控件示例" IsExpanded="True">
+                <TreeViewItem Header="DataGrid" IsExpanded="True">
+                    <TreeViewItem Header="基本数据绑定" />
+                    <TreeViewItem Header="Level 2.3" />
+                </TreeViewItem>
+                <TreeViewItem Header="TreeView" />
+            </TreeViewItem>
+            <TreeViewItem Header="功能示例" IsExpanded="True">
+                <TreeViewItem Header="父子 UserControl 间交互" />
+                <TreeViewItem Header="树形结构数据绑定及增删操作" />
+            </TreeViewItem>
+        </TreeView>-->
+        <TreeView x:Name="treeView" Grid.Column="0" ItemsSource="{Binding TypeList}" BorderThickness="0">
+            <!--<i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectedItemChanged">
+                    <i:InvokeCommandAction Command="{Binding SelectItemChangeCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>-->
+            <!--<TreeView.Resources>
+                <HierarchicalDataTemplate DataType="{x:Type vm:TypeTreeModel}" ItemsSource="{Binding ChildList}">
+                    <TextBlock Text="{Binding Name}" Margin="3 2"/>
+                </HierarchicalDataTemplate>
+                <DataTemplate DataType="{x:Type vm:TypeModel}">
+                    <TextBlock Text="{Binding Name}" Margin="3 2"></TextBlock>
+                </DataTemplate>
+            </TreeView.Resources>-->
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate DataType="local:TypeTreeModel"
+                                  ItemsSource="{Binding ChildList}">
+                    <TextBlock Text="{Binding Name}"/>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+        <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
+        <ContentControl Grid.Column="2" Content="{Binding}" DataContext="{Binding Path=ViewModel}" />
         <!--<view:MenuView x:Name = "MenuViewControl" />-->
-        <view:ClassRoomsView x:Name = "ClassRoomsViewControl" />
+        <!--<view:ClassRoomsView x:Name = "ClassRoomsViewControl" Grid.Column="2" />-->
     </Grid>
 </Window>

@@ -1,5 +1,4 @@
-﻿using MvvmSample;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
 

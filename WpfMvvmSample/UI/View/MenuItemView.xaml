@@ -8,11 +8,12 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0">
+        <StackPanel Grid.Row="0" Grid.RowSpan="2">
             <TextBlock x:Name="textBlockTitle" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding Path=menuItem.Title}" />
         </StackPanel>
-        <Button x:Name="buttonDelete" Grid.Row="1" Content="删除" Command="{Binding DeleteCommand}" CommandParameter="{Binding Path=menuItem.Id}" />
+        <Button x:Name="buttonDelete" Grid.Row="2" Content="删除" Command="{Binding DeleteCommand}" CommandParameter="{Binding Path=menuItem.Id}" />
     </Grid>
 </UserControl>
