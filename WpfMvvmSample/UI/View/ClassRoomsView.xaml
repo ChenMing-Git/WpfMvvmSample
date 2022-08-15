@@ -23,18 +23,31 @@
                             <Expander Margin="15 0 15 15" IsExpanded="True" Header="{Binding Path=RoomName}">
                                 <Expander.Content>
                                     <StackPanel Orientation="Vertical">
-                                        <Button Content="新增学生" Margin="25 5 0 0" Command="{Binding AddStudentCommand}" CommandParameter="{Binding Path=Id}" />
-                                        <ListBox ItemsSource="{Binding Path=Students}" Margin="25 5 0 0">
-                                            <ListBox.ItemTemplate>
-                                                <DataTemplate>
-                                                    <StackPanel Orientation="Horizontal">
-                                                        <TextBox Text="{Binding Path=Name,Mode=TwoWay}" Width="150" />
-                                                        <TextBlock Text="{Binding Path=Name}" Width="150" />
-                                                        <Button Content="删除" Width="50" Command="{Binding DeleteStudentCommand}" CommandParameter="{Binding Path=Id}" />
-                                                    </StackPanel>
-                                                </DataTemplate>
-                                            </ListBox.ItemTemplate>
-                                        </ListBox>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="30"></RowDefinition>
+                                                <RowDefinition Height="*"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Content="新增学生" Margin="25 5 0 0" Command="{Binding AddStudentCommand}" CommandParameter="{Binding Path=Id}" />
+                                            <Button Grid.Row="0" Grid.Column="3" Content="删除教室" Margin="25 5 0 0" Command="{Binding DeleteClassRoomCommand}" CommandParameter="{Binding Path=Id}" />
+                                            <ListBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" ItemsSource="{Binding Path=Students}" Margin="25 5 0 0">
+                                                <ListBox.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBox Text="{Binding Path=Name,Mode=TwoWay}" Width="150" />
+                                                            <TextBlock Text="{Binding Path=Name}" Width="150" />
+                                                            <Button Content="删除" Width="50" Command="{Binding DeleteStudentCommand}" CommandParameter="{Binding Path=Id}" />
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </ListBox.ItemTemplate>
+                                            </ListBox>
+                                        </Grid>
                                     </StackPanel>
                                 </Expander.Content>
                             </Expander>

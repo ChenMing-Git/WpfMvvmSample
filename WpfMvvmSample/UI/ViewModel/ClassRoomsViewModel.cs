@@ -63,6 +63,27 @@ namespace WpfMvvmSample.UI.ViewModel
             ClassRooms = tempClassRooms;
         }
 
+        public ICommand DeleteClassRoomCommand
+        {
+            get
+            {
+                _Command = new DelegateCommand(param => this.DeleteClassRoom(param), null);
+                return _Command;
+            }
+        }
+
+        public void DeleteClassRoom(object param)
+        {
+            var tempClassRooms = ClassRooms;
+            var f = tempClassRooms.Find(x => x.Id == int.Parse(param.ToString()));
+            if (f != null)
+            {
+                tempClassRooms.Remove(f);
+            }
+            ClassRooms = new List<ClassRoomViewModel>();
+            ClassRooms = tempClassRooms;
+        }
+
         public ICommand AddStudentCommand
         {
             get
@@ -173,6 +194,21 @@ namespace WpfMvvmSample.UI.ViewModel
             {
                 _students = value;
                 RaisePropertyChanged("Students");
+            }
+        }
+
+        public ICommand DeleteClassRoomCommand
+        {
+            get
+            {
+                try
+                {
+                    return this.classRoomsViewModel.DeleteClassRoomCommand;
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                }
             }
         }
 

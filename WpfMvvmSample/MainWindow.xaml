@@ -3,7 +3,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:view="clr-namespace:WpfMvvmSample.UI.View"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:viewModel="clr-namespace:WpfMvvmSample.UI.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
@@ -16,37 +16,16 @@
             <ColumnDefinition Width="5" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <!--<TreeView BorderThickness="0">
-            <TreeViewItem Header="控件示例" IsExpanded="True">
-                <TreeViewItem Header="DataGrid" IsExpanded="True">
-                    <TreeViewItem Header="基本数据绑定" />
-                    <TreeViewItem Header="Level 2.3" />
-                </TreeViewItem>
-                <TreeViewItem Header="TreeView" />
-            </TreeViewItem>
-            <TreeViewItem Header="功能示例" IsExpanded="True">
-                <TreeViewItem Header="父子 UserControl 间交互" />
-                <TreeViewItem Header="树形结构数据绑定及增删操作" />
-            </TreeViewItem>
-        </TreeView>-->
-        <TreeView x:Name="treeView" Grid.Column="0" ItemsSource="{Binding TypeList}" BorderThickness="0">
-            <!--<i:Interaction.Triggers>
+        <TreeView x:Name="treeView" Grid.Column="0" ItemsSource="{Binding treeNodeList}" BorderThickness="0">
+            <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectedItemChanged">
-                    <i:InvokeCommandAction Command="{Binding SelectItemChangeCommand}"/>
+                    <i:InvokeCommandAction Command="{Binding SelectItemChangeCommand}" 
+                                           CommandParameter="{Binding ElementName=treeView,Path=SelectedItem}"/>
                 </i:EventTrigger>
-            </i:Interaction.Triggers>-->
-            <!--<TreeView.Resources>
-                <HierarchicalDataTemplate DataType="{x:Type vm:TypeTreeModel}" ItemsSource="{Binding ChildList}">
-                    <TextBlock Text="{Binding Name}" Margin="3 2"/>
-                </HierarchicalDataTemplate>
-                <DataTemplate DataType="{x:Type vm:TypeModel}">
-                    <TextBlock Text="{Binding Name}" Margin="3 2"></TextBlock>
-                </DataTemplate>
-            </TreeView.Resources>-->
+            </i:Interaction.Triggers>
             <TreeView.ItemTemplate>
-                <HierarchicalDataTemplate DataType="local:TypeTreeModel"
-                                  ItemsSource="{Binding ChildList}">
-                    <TextBlock Text="{Binding Name}"/>
+                <HierarchicalDataTemplate DataType="local:TreeNodeModel" ItemsSource="{Binding ChildNode}">
+                    <TextBlock Text="{Binding Name}" />
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>
         </TreeView>

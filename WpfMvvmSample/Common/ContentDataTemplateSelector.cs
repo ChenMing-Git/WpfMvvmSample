@@ -15,8 +15,7 @@ namespace WpfMvvmSample
         {
             do
             {
-                if (item == null
-                    || item is UIElement)
+                if (item == null || item is UIElement)
                 {
                     break;
                 }
@@ -29,45 +28,34 @@ namespace WpfMvvmSample
                 // 在这为了演示方便，我就直接反射对应名称的 View了。
 
                 var viewModelType = item.GetType();
-
                 if (ViewModelQueue.Contains(viewModelType))
                 {
                     break;
                 }
-
                 var viewModelName = viewModelType.Name;
-
                 string name = null;
                 var index = viewModelName.LastIndexOf("ViewModel", StringComparison.OrdinalIgnoreCase);
                 if (index > 0)
                 {
                     name = viewModelName.Substring(0, index);
                 }
-
                 if (string.IsNullOrEmpty(name))
                 {
                     break;
                 }
-
                 var viewName = string.Format("{0}.{1}{2}", viewModelType.Namespace.Replace("ViewModel", "View"), name, "View");
-
                 var view = viewModelType.Assembly.GetType(viewName, false, true);
-
                 if (view != null)
                 {
                     var dataTemplate = CreateDataTemplate(view, viewModelType);
-
                     var dtkey = dataTemplate.DataTemplateKey;
-
                     if (dtkey != null)
                     {
                         Application.Current.Resources.Add(dtkey, dataTemplate);
                         ViewModelQueue.Enqueue(viewModelType);
                     }
-
                     return dataTemplate;
                 }
-
             } while (false);
 
             return base.SelectTemplate(item, container);

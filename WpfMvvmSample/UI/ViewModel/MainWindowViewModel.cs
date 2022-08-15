@@ -6,10 +6,9 @@ namespace WpfMvvmSample.UI.ViewModel
 {
     internal class MainWindowViewModel : ViewModelBase
     {
-
         public MainWindowViewModel()
         {
-            TypeList = new ObservableCollection<TypeTreeModel>(GetData());
+            treeNodeList = new ObservableCollection<TreeNodeModel>(GetData());
             //ViewModel = new MenuViewModel();
             ViewModel = new ClassRoomsViewModel(); ;
         }
@@ -30,67 +29,73 @@ namespace WpfMvvmSample.UI.ViewModel
             }
         }
 
-        public ObservableCollection<TypeTreeModel> TypeList { get; set; } = new ObservableCollection<TypeTreeModel>();
-        
-        private List<TypeTreeModel> GetData()
+        public ObservableCollection<TreeNodeModel> treeNodeList { get; set; } = new ObservableCollection<TreeNodeModel>();
+
+        private List<TreeNodeModel> GetData()
         {
-            List<TypeTreeModel> typeTrees = new List<TypeTreeModel>()
+            List<TreeNodeModel> typeTrees = new List<TreeNodeModel>()
             {
-                new TypeTreeModel()
+                new TreeNodeModel()
                 {
-                    Id = 1,
-                    Name = "手机",
-                    ChildList = new ObservableCollection<TypeTreeModel>()
+                    Id=1,
+                    Name="控件示例",
+                    ChildNode = new ObservableCollection<TreeNodeModel>()
                     {
-                        new TypeTreeModel(){ Id=2,Name="苹果" },
-                        new TypeTreeModel(){ Id=3,Name="华为",
-                            ChildList = new ObservableCollection<TypeTreeModel>()
-                            {
-                                new TypeTreeModel(){Id=4,Name="荣耀" }
-                            }},
-                        new TypeTreeModel(){ Id=5,Name="小米",
-                            ChildList = new ObservableCollection<TypeTreeModel>()
-                            {
-                                new TypeTreeModel(){Id=6,Name="红米" }
-                            }}
+                        new TreeNodeModel(){Id=11,Name="TreeView"},
+                        new TreeNodeModel(){Id=12,Name="ListView"},
+                        new TreeNodeModel(){Id=13,Name="DataGrid"}
                     }
                 },
-                new TypeTreeModel()
+                new TreeNodeModel()
                 {
-                    Id=7,
-                    Name="笔记本",
-                    ChildList = new ObservableCollection<TypeTreeModel>()
+                    Id=2,
+                    Name="功能示例",
+                    ChildNode = new ObservableCollection<TreeNodeModel>()
                     {
-                        new TypeTreeModel(){Id=8,Name="联想"}
+                        new TreeNodeModel(){Id=21,Name="ListBox、ItemsControl 内嵌 UserControl 的交互",ViewModelName="MenuViewModel"},
+                        new TreeNodeModel(){Id=22,Name="ListBox、ItemsControl 互嵌绑定树状结构数据的交互",ViewModelName="ClassRoomsViewModel"}
                     }
                 },
-                new TypeTreeModel()
-                {
-                    Id=9,
-                    Name="耳机"
-                }
             };
             return typeTrees;
         }
+
         public ICommand SelectItemChangeCommand
         {
             get
             {
                 return new DelegateCommand((param) =>
                 {
-                    if (param != null) { }
+                    if (param != null)
+                    {
+                        var node = (TreeNodeModel)param;
+                        if (!string.IsNullOrEmpty(node.ViewModelName))
+                        {
+                            switch (node.ViewModelName)
+                            {
+                                case "MenuViewModel":
+                                    ViewModel = new MenuViewModel();
+                                    break;
+
+                                case "ClassRoomsViewModel":
+                                    ViewModel = new ClassRoomsViewModel();
+                                    break;
+
+                                default:
+                                    break;
+                            }
+                        }
+                    }
                 });
             }
         }
     }
 
-    public class TypeTreeModel : TypeModel
-    {
-        public ObservableCollection<TypeTreeModel> ChildList { get; set; } = new ObservableCollection<TypeTreeModel>();
-    }
-    public class TypeModel : ViewModelBase
+    public class TreeNodeModel : ViewModelBase
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string ViewModelName { get; set; }
+        public ObservableCollection<TreeNodeModel> ChildNode { get; set; } = new ObservableCollection<TreeNodeModel>();
     }
 }
