@@ -3,7 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:view="clr-namespace:WpfMvvmSample.UI.View"
+             xmlns:local="clr-namespace:WpfMvvmSample.UI.View"
              xmlns:viewModel="clr-namespace:WpfMvvmSample.UI.ViewModel"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
@@ -32,7 +32,7 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="64" />
                             </Grid.RowDefinitions>
-                            <view:MenuItemView x:Name="MenuItemView" DataContext="{Binding}" Content="{Binding}" Focusable="True" Grid.Column="0" Grid.Row="0" />
+                            <local:MenuItemView x:Name="MenuItemView" DataContext="{Binding}" Content="{Binding}" Focusable="True" Grid.Column="0" Grid.Row="0" />
                         </Grid>
                     </DockPanel>
                 </DataTemplate>
@@ -47,8 +47,8 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <DockPanel>
-                        <Border BorderBrush="Red" BorderThickness="1">
+                    <DockPanel Margin="5">
+                        <Border BorderBrush="Gray" BorderThickness="1">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="64" />
@@ -56,7 +56,7 @@
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="64" />
                                 </Grid.RowDefinitions>
-                                <view:MenuItemView x:Name="MenuItemView" DataContext="{Binding}" Content="{Binding}" Focusable="True" Grid.Column="0" Grid.Row="0" />
+                                <local:MenuItemView x:Name="MenuItemView" DataContext="{Binding}" Content="{Binding}" Focusable="True" Grid.Column="0" Grid.Row="0" />
                             </Grid>
                         </Border>
                     </DockPanel>

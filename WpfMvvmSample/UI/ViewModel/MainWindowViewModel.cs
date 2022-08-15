@@ -41,9 +41,10 @@ namespace WpfMvvmSample.UI.ViewModel
                     Name="控件示例",
                     ChildNode = new ObservableCollection<TreeNodeModel>()
                     {
-                        new TreeNodeModel(){Id=11,Name="TreeView"},
-                        new TreeNodeModel(){Id=12,Name="ListView"},
-                        new TreeNodeModel(){Id=13,Name="DataGrid"}
+                        new TreeNodeModel(){Id=11,Name="DataGrid"},
+                        new TreeNodeModel(){Id=12,Name="Expander",ViewModelName="SampleExpanderViewModel"},
+                        new TreeNodeModel(){Id=13,Name="ListView"},
+                        new TreeNodeModel(){Id=14,Name="TreeView"}
                     }
                 },
                 new TreeNodeModel()
@@ -79,6 +80,10 @@ namespace WpfMvvmSample.UI.ViewModel
 
                                 case "ClassRoomsViewModel":
                                     ViewModel = new ClassRoomsViewModel();
+                                    break;
+
+                                case "SampleExpanderViewModel":
+                                    ViewModel = new SampleExpanderViewModel();
                                     break;
 
                                 default:

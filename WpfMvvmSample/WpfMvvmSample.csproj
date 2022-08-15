@@ -64,6 +64,7 @@
     <Compile Include="UI\ViewModel\MainWindowViewModel.cs" />
     <Compile Include="UI\ViewModel\MenuItemViewModel.cs" />
     <Compile Include="UI\ViewModel\MenuViewModel.cs" />
+    <Compile Include="UI\ViewModel\SampleExpanderViewModel.cs" />
     <Compile Include="UI\ViewModel\ViewModelBase.cs" />
     <Compile Include="UI\View\ClassRoomsView.xaml.cs">
       <DependentUpon>ClassRoomsView.xaml</DependentUpon>
@@ -73,6 +74,24 @@
     </Compile>
     <Compile Include="UI\View\MenuView.xaml.cs">
       <DependentUpon>MenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\View\SampleComboBoxView.xaml.cs">
+      <DependentUpon>SampleComboBoxView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\View\SampleDataGridView.xaml.cs">
+      <DependentUpon>SampleDataGridView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\View\SampleExpanderView.xaml.cs">
+      <DependentUpon>SampleExpanderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\View\SampleListViewView.xaml.cs">
+      <DependentUpon>SampleListViewView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\View\SampleTabControlView.xaml.cs">
+      <DependentUpon>SampleTabControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\View\SampleTreeViewView.xaml.cs">
+      <DependentUpon>SampleTreeViewView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -95,6 +114,30 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\View\MenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\View\SampleComboBoxView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\View\SampleDataGridView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\View\SampleExpanderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\View\SampleListViewView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\View\SampleTabControlView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\View\SampleTreeViewView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -122,9 +165,13 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Resources\fontawesome-webfont.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="assets\icon_delete_22_22.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
