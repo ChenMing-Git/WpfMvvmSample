@@ -1,14 +1,18 @@
 ﻿<Application x:Class="WpfMvvmSample.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
              xmlns:local="clr-namespace:WpfMvvmSample"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <local:ContentDataTemplateSelector x:Key="ContentDataTemplateSelector" />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/WpfMvvmSample;component/Styles/Bootstrap.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/WpfMvvmSample;component/PathGeometries/Glyphicons.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
 
-        <Style TargetType="{x:Type ContentControl}">
-            <Setter Property="ContentTemplateSelector" 
-                    Value="{StaticResource ContentDataTemplateSelector}"/>
-        </Style>
     </Application.Resources>
 </Application>

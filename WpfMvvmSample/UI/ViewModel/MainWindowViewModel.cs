@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using WpfMvvmSample.UI.View;
 
 namespace WpfMvvmSample.UI.ViewModel
 {
@@ -10,7 +11,7 @@ namespace WpfMvvmSample.UI.ViewModel
         {
             treeNodeList = new ObservableCollection<TreeNodeModel>(GetData());
             //ViewModel = new MenuViewModel();
-            ViewModel = new ClassRoomsViewModel(); ;
+            ViewModel = new ClassRoomsView();
         }
 
         private object _viewModel;
@@ -75,15 +76,15 @@ namespace WpfMvvmSample.UI.ViewModel
                             switch (node.ViewModelName)
                             {
                                 case "MenuViewModel":
-                                    ViewModel = new MenuViewModel();
+                                    ViewModel = new MenuView();
                                     break;
 
                                 case "ClassRoomsViewModel":
-                                    ViewModel = new ClassRoomsViewModel();
+                                    ViewModel = new ClassRoomsView();
                                     break;
 
                                 case "SampleExpanderViewModel":
-                                    ViewModel = new SampleExpanderViewModel();
+                                    ViewModel = new SampleExpanderView();
                                     break;
 
                                 default:
