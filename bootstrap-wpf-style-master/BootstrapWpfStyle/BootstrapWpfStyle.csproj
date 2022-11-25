@@ -75,6 +75,9 @@
     <Compile Include="Win_Contextual.xaml.cs">
       <DependentUpon>Win_Contextual.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Win_CheckBoxList.xaml.cs">
+      <DependentUpon>Win_CheckBoxList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Win_ListBox.xaml.cs">
       <DependentUpon>Win_ListBox.xaml</DependentUpon>
     </Compile>
@@ -147,6 +150,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\CheckBoxList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Styles\ListBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -214,6 +221,10 @@
     <Page Include="Win_Contextual.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Win_CheckBoxList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Win_ListBox.xaml">
       <Generator>MSBuild:Compile</Generator>

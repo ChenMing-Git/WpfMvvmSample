@@ -8,6 +8,7 @@
         <ResourceDictionary Source="pack://application:,,,/BootstrapWpfStyle;component/Styles/DataGrid.xaml"></ResourceDictionary>
         <ResourceDictionary Source="pack://application:,,,/BootstrapWpfStyle;component/Styles/ListView.xaml"></ResourceDictionary>
         <ResourceDictionary Source="pack://application:,,,/BootstrapWpfStyle;component/Styles/ListBox.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="pack://application:,,,/BootstrapWpfStyle;component/Styles/CheckBoxList.xaml"></ResourceDictionary>
         <ResourceDictionary Source="pack://application:,,,/BootstrapWpfStyle;component/Styles/ProgressBar.xaml"></ResourceDictionary>
         <ResourceDictionary Source="pack://application:,,,/BootstrapWpfStyle;component/Styles/FormControl.xaml"></ResourceDictionary>
         <ResourceDictionary Source="pack://application:,,,/BootstrapWpfStyle;component/Styles/InputGroup.xaml"></ResourceDictionary>

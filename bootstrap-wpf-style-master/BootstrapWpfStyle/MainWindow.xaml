@@ -15,6 +15,7 @@
             <Button Margin="5" Content="空数据表格" Tag="Win_DataGrid_Empty"></Button>
             <Button Margin="5" Content="ListView" Tag="Win_ListView"></Button>
             <Button Margin="5" Content="ListBox" Tag="Win_ListBox"></Button>
+            <Button Margin="5" Content="CheckBoxList" Tag="Win_CheckBoxList"></Button>
             <Button Margin="5" Content="进度条" Tag="Win_ProgressBar"></Button>
             <Button Margin="5" Content="输入框" Tag="Win_TextBox"></Button>
             <Button Margin="5" Content="密码框" Tag="Win_PasswordBox"></Button>
